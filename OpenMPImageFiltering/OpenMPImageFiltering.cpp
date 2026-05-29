@@ -19,8 +19,9 @@ void TellMyWeight(const vector<vector<double>>& inputWeightMatrix);
 
 int main(int argc, char** argv)
 {
-	if (argc < 5)
+	if (argc < 6)
 	{
+		cout << "Usage: " << argv[0] << " <input> <output> <sigma> <radius> <threads>" << endl;
 		return -1;
 	}
 
@@ -30,7 +31,19 @@ int main(int argc, char** argv)
 	unsigned char* img = nullptr;
 
 	double sigma = atof(argv[3]);
-	int radius = atof(argv[4]);
+	int radius = atoi(argv[4]);
+	int threads = atoi(argv[5]);
+
+	omp_set_dynamic(0);
+	omp_set_num_threads(threads);
+
+	#pragma omp parallel
+	{
+		#pragma omp single
+		{
+			cout << "Threads used: " << omp_get_num_threads() << endl;
+		}
+	}
 
 	img = stbi_load(argv[1], &width, &height, &channels, 1);
 
@@ -52,7 +65,7 @@ int main(int argc, char** argv)
 
 	double start = omp_get_wtime();
 
-#pragma omp parallel for schedule(static)
+	#pragma omp parallel for schedule(static)
 	for (int y = 0; y < height; y++)
 	{
 		for (int x = 0; x < width; x++)
@@ -106,7 +119,7 @@ vector<vector<double>> GauseMatrix(double sigma, int radius)
 	double pi = numbers::pi;
 	double sum = 0.0;
 
-#pragma omp parallel for reduction(+:sum)
+	#pragma omp parallel for reduction(+:sum)
 	for (int i = 0; i < dimension; i++)
 	{
 		for (int j = 0; j < dimension; j++)

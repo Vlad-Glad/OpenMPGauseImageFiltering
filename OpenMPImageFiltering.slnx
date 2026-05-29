@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="OpenMPImageFiltering/OpenMPImageFiltering.vcxproj" />
+  <Project Path="OpenMPImageFiltering/OpenMPImageFiltering.vcxproj" Id="7e08c126-9d0c-404a-9ca3-cdd6c798f6fd" />
 </Solution>
