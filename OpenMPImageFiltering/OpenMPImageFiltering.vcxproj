@@ -147,6 +147,7 @@
     <ClInclude Include="stb_image_write.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="LinearCode.md" />
     <None Include="MPIGausseCode.md" />
     <None Include="OpenMP.md" />
   </ItemGroup>

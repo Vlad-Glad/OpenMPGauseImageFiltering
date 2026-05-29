@@ -30,5 +30,6 @@
   <ItemGroup>
     <None Include="MPIGausseCode.md" />
     <None Include="OpenMP.md" />
+    <None Include="LinearCode.md" />
   </ItemGroup>
 </Project>
